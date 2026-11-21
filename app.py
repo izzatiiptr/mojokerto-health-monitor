@@ -62,10 +62,10 @@ with st.sidebar:
         st.caption('☎️ Tombol 112 membuka aplikasi telepon jika perangkat mendukung; tidak otomatis menelepon.')
         with st.expander('Sumber data & metodologi'):
             st.markdown(
-                '**Historis:** SATA JATIM, hasil olahan Project 1.  \n'
-                '**Indeks:** HHI & Gini atas jumlah absolut antar-kecamatan.  \n'
-                '**AQI:** Open-Meteo (US AQI; bukan ISPU).  \n'
-                '**Catatan:** proyek akademik, bukan situs resmi Pemkot.'
+                '**Data Kesehatan:** SATA JATIM (2020–2025).  \n'
+                '**Analisis:** EDA, statistik deskriptif, HHI & Gini.  \n'
+                '**Kualitas Udara:** Open-Meteo (US AQI; bukan ISPU).  \n'
+                '**Catatan:** Dashboard ini bukan merupakan situs resmi Pemerintah Kota Mojokerto.'
             )
 
 nav.run()
