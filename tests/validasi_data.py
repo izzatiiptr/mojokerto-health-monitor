@@ -82,3 +82,26 @@ for page in ('2_tenaga_kesehatan.py','3_fasilitas_kapasitas.py','4_distribusi.py
     assert 'start_year, end_year = st.slider(' in source, page
 assert "'**Gini** mengukur" in page_dist
 print('Perubahan v0.3: sidebar, rentang tahun, Markdown, dan basemap — OK')
+
+
+# Pemeriksaan direktori Google Maps versi v0.4.
+from urllib.parse import parse_qs, urlparse
+directory = pd.read_csv(root / 'data' / 'direktori' / 'fasilitas.csv')
+assert len(directory) == 12
+assert set(directory['Jenis_Fasilitas']) == {'Rumah Sakit', 'Puskesmas'}
+assert directory['Jenis_Fasilitas'].value_counts().to_dict() == {'Rumah Sakit': 6, 'Puskesmas': 6}
+assert set(directory['Kecamatan']).issubset({'Kranggan', 'Magersari', 'Prajuritkulon'})
+assert not directory['Nama_Fasilitas'].duplicated().any()
+for _, row in directory.iterrows():
+    assert isinstance(row['Alamat'], str) and row['Alamat'].strip()
+    parts = urlparse(row['Google_Maps_URL'])
+    assert parts.scheme == 'https' and parts.netloc == 'www.google.com'
+    assert 'query_place_id' in parse_qs(parts.query), row['Nama_Fasilitas']
+assert directory['Latitude'].isna().all() and directory['Longitude'].isna().all(), 'Koordinat tidak boleh diisi tanpa verifikasi pin'
+app = (root / 'app.py').read_text(encoding='utf-8')
+assert "key='sidebar_primary'" in app
+assert "key='sidebar_secondary'" in app
+assert app.index("class=\"emergency-link\"") < app.index("key='sidebar_secondary'")
+map_code = (root / 'pages' / '5_direktori.py').read_text(encoding='utf-8')
+assert 'destination_place_id' in map_code
+print('Direktori 12 fasilitas, tautan Google Maps, dan tata letak sidebar v0.4: OK')
