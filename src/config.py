@@ -1,3 +1,4 @@
+"""Konfigurasi warna, lokasi file, dan cakupan data."""
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -5,12 +6,17 @@ DATA_HISTORIS = ROOT / 'data' / 'historis'
 DATA_ANALISIS = ROOT / 'data' / 'analisis'
 DATA_DIREKTORI = ROOT / 'data' / 'direktori' / 'fasilitas.csv'
 
-TEAL = '#00B8A9'
-NAVY = '#12304A'
-CORAL = '#FF6B57'
-AMBER = '#FFBE3D'
-PALETTE = [TEAL, NAVY, CORAL, AMBER, '#3E83D5', '#785CC5']
+# Teal & Peach — palet visual pilihan pengguna.
+TEAL = '#0F6B6D'
+MUTED_TEAL = '#5FA8A0'
+CREAM = '#FFF4E8'
+PEACH = '#F7B08A'
+CORAL = '#E76E51'
+DARK = '#203537'
+RED_112 = '#D62828'  # Hanya untuk aksi darurat; hindari memakai sebagai warna grafik.
+PALETTE = [TEAL, CORAL, MUTED_TEAL, PEACH, '#597D8A', '#A7857C']
 KECAMATAN = ['Kranggan', 'Magersari', 'Prajuritkulon']
+
 LABEL_FILES = {
     'Tenaga Kesehatan': 'tenaga_kesehatan.csv',
     'Puskesmas': 'puskesmas.csv',
@@ -20,7 +26,6 @@ LABEL_FILES = {
     'Rumah Sakit Berdasarkan Kelas': 'rumah_sakit_berdasarkan_kelas.csv',
     'Rumah Sakit Berdasarkan Akreditasi': 'rumah_sakit_berdasarkan_akreditasi.csv',
 }
-
-# Koordinat pusat pendekatan hanya digunakan untuk API kualitas udara;
-# BUKAN lokasi sebuah rumah sakit atau puskesmas.
+# Perkiraan titik tengah Kota Mojokerto, dipakai untuk permintaan API dan pusat peta.
+# BUKAN koordinat fasilitas kesehatan.
 AQI_LAT, AQI_LON = -7.472, 112.434
