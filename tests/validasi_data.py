@@ -68,3 +68,17 @@ assert sorted(p.name for p in (root / 'pages').glob('*.py')) == required_pages
 assert '#D62828' in (root / 'assets' / 'styles.css').read_text(encoding='utf-8')
 assert 'tel:112' in (root / 'app.py').read_text(encoding='utf-8')
 print('Navigasi dan tombol 112: OK')
+
+# Pemeriksaan statis perubahan antarmuka v0.3.
+app = (root / 'app.py').read_text(encoding='utf-8')
+page_map = (root / 'pages' / '5_direktori.py').read_text(encoding='utf-8')
+page_dist = (root / 'pages' / '4_distribusi.py').read_text(encoding='utf-8')
+assert "position='hidden'" in app
+assert 'st.page_link(page' in app
+assert "tiles='OpenStreetMap'" in page_map
+assert "tiles='CartoDB positron'" not in page_map
+for page in ('2_tenaga_kesehatan.py','3_fasilitas_kapasitas.py','4_distribusi.py'):
+    source = (root / 'pages' / page).read_text(encoding='utf-8')
+    assert 'start_year, end_year = st.slider(' in source, page
+assert "'**Gini** mengukur" in page_dist
+print('Perubahan v0.3: sidebar, rentang tahun, Markdown, dan basemap — OK')
