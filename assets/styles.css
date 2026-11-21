@@ -212,9 +212,27 @@ section[data-testid="stSidebar"] a:focus-visible {
     outline-offset: 3px;
 }
 
-/* v0.7 — geser seluruh isi sidebar ke atas tanpa mengubah urutan komponen.
-   Margin negatif mengurangi ruang kosong header Streamlit sekaligus menggeser
-   branding, menu, tombol 112, dan metadata sebagai satu kesatuan. */
 section[data-testid="stSidebar"] [data-testid="stSidebarUserContent"] {
-    margin-top: -3rem !important;
+    margin-top: -2rem !important;
+}
+
+/* Beri jarak antar elemen sidebar */
+.st-key-sidebar_primary [data-testid="stVerticalBlock"] {
+    gap: 0.5rem !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stPageLink"] a,
+section[data-testid="stSidebar"] a[data-testid="stPageLink-NavLink"] {
+    min-height: 44px !important;
+    padding: 8px 10px !important;
+}
+
+.st-key-sidebar_primary [data-testid="stElementContainer"]:has(.emergency-link) {
+    margin-top: auto !important;
+    padding-top: 18px !important;
+    padding-bottom: 20px !important;
+}
+
+.st-key-sidebar_secondary {
+    padding-top: 22px !important;
 }
