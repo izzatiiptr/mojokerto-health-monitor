@@ -30,13 +30,32 @@ hero(
     'INTERACTIVE HEALTHCARE MAP',
 )
 
-df = load_directory()
-st.caption('Alamat dan tautan mengikuti listing Google Maps. Filter kecamatan memakai pembagian administratif pada dataset.')
+try:
+    df = load_directory()
+except (FileNotFoundError, ValueError) as exc:
+    st.error('Dataset direktori tidak dapat dibaca.')
+    st.code(str(exc), language=None)
+    st.info(
+        'Periksa **data/direktori/fasilitas.csv** pada branch deployment. '
+        'Pastikan baris pertama berisi delapan nama kolom yang benar. '
+        'Lalu commit file CSV dan src/data.py dari paket perbaikan.'
+    )
+    st.stop()
+st.caption(
+    f'Data direktori: {len(df)} fasilitas terbaca dari data/direktori/fasilitas.csv. '
+    'Alamat dan tautan mengikuti Google Maps; filter kecamatan memakai data administratif.'
+)
+if df.empty:
+    st.error(
+        'CSV direktori masih kosong pada aplikasi yang sedang berjalan. '
+        'Pastikan data/direktori/fasilitas.csv di branch yang digunakan deployment '
+        'berisi 12 fasilitas, kemudian reboot aplikasi Streamlit Community Cloud.'
+    )
 
 c1, c2, c3 = st.columns([1, 1, 1.4], gap='large')
 with c1:
-    jenis_list = sorted(x for x in df['Jenis_Fasilitas'].dropna().unique() if x)
-    jenis = st.selectbox('Jenis fasilitas', ['Semua'] + jenis_list)
+    # Pilihan tetap tampil walaupun CSV belum terbaca; tidak bergantung pada unique().
+    jenis = st.selectbox('Jenis fasilitas', ['Semua', 'Rumah Sakit', 'Puskesmas'])
 with c2:
     kec = st.selectbox('Kecamatan', ['Semua'] + KECAMATAN)
 with c3:
@@ -68,7 +87,10 @@ with left:
         section('Direktori Fasilitas')
         st.caption(f'{len(filtered)} fasilitas terdaftar · {len(located)} titik terpetakan')
         if filtered.empty:
-            st.info('Tidak ada fasilitas yang sesuai dengan filter atau kata kunci.')
+            if df.empty:
+                st.warning('File CSV yang sedang dibaca aplikasi belum berisi fasilitas.')
+            else:
+                st.info('Tidak ada fasilitas yang sesuai dengan filter atau kata kunci.')
         else:
             # Daftar scrollable agar halaman peta tidak memanjang sepanjang 12 kartu.
             with st.container(height=560, border=False):
@@ -130,13 +152,13 @@ with right:
 
         st_folium(
             fmap, height=555, width=None,
-            returned_objects=[], key='health_map_osm_v04',
+            returned_objects=[], key='health_map_osm_v06',
         )
         st.caption('Peta dasar © OpenStreetMap contributors. Navigasi fasilitas dibuka melalui Google Maps.')
-        if located.empty:
+        if located.empty and not filtered.empty:
             st.info(
-                'Daftar 12 fasilitas sudah tersedia. Marker belum ditampilkan karena koordinat pin '
-                'Google Maps belum dimasukkan dan diverifikasi. Gunakan tombol Google Maps atau Petunjuk arah pada daftar.'
+                'Fasilitas ditemukan, tetapi belum ada koordinat valid untuk filter ini. '
+                'Periksa kolom Latitude dan Longitude pada data/direktori/fasilitas.csv.'
             )
 
 note(
