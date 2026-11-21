@@ -55,3 +55,68 @@ h1,h2,h3 { color:var(--ink);letter-spacing:-.035em; }
 .stTabs [aria-selected="true"] {background:#e5f3ed; color:#0F6B6D!important;}
 @media (max-width:900px){.hero{padding:24px;min-height:170px}.hero-copy{max-width:90%}.hero-art{opacity:.32}.kpi{min-height:122px;padding:15px}.kpi-value{font-size:1.6rem}}
 @media (prefers-reduced-motion: reduce){.kpi,.emergency-link{transition:none}.kpi:hover,.emergency-link:hover{transform:none}}
+
+/* v0.3 — perbaikan ruang atas, jarak antarkomponen, dan navigasi kustom */
+[data-testid="stMainBlockContainer"],
+.block-container {
+    padding-top: 3.9rem !important;
+    padding-bottom: 4rem !important;
+}
+.hero {
+    margin-top: 14px;
+    margin-bottom: 35px;
+    box-shadow: 0 24px 48px rgba(15,107,109,.18),
+                0 8px 17px rgba(15,107,109,.12),
+                inset 0 1px 1px #ffffff50;
+}
+.filter-heading {
+    margin: 10px 0 14px;
+    color: #4a7470;
+    font-weight: 800;
+    font-size: 0.89rem;
+    letter-spacing: .03em;
+}
+.kpi-group-space {height: 20px;}
+.section-space {height: 26px;}
+.section-title {margin-top: 12px !important; margin-bottom: 12px !important;}
+.kpi {min-height: 165px; padding: 25px 24px 24px;}
+.kpi-label {line-height: 1.4;}
+.kpi-value {margin-top: 17px; margin-bottom: 9px;}
+.kpi-sub {line-height: 1.5;}
+/* Jarak/filter pada layout tenaga kesehatan dan distribusi */
+[data-testid="stSlider"] {padding-bottom: 6px;}
+[data-testid="stVerticalBlockBorderWrapper"] > div {border-radius: 20px;}
+/* Branding berada sebelum menu tautan halaman; menu bawaan st.navigation disembunyikan. */
+[data-testid="stSidebar"] .sidebar-brand {
+    padding: 12px 8px 25px;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+    margin-bottom: 19px;
+}
+[data-testid="stSidebar"] .sidebar-brand .brand-title {font-size: 1.15rem;}
+.sidebar-menu-heading {
+    color: #f7d1b6 !important;
+    padding: 3px 10px 12px;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .15em;
+}
+[data-testid="stSidebar"] [data-testid="stPageLink"] a,
+[data-testid="stSidebar"] a[data-testid="stPageLink-NavLink"] {
+    display: flex;
+    align-items: center;
+    border-radius: 13px;
+    padding: 7px 10px;
+    margin: 2px 0;
+    text-decoration: none;
+    transition: background .15s ease;
+}
+[data-testid="stSidebar"] [data-testid="stPageLink"] a:hover,
+[data-testid="stSidebar"] [data-testid="stPageLink"] a[aria-current="page"] {
+    background: rgba(255,255,255,.19);
+}
+@media (max-width: 900px) {
+    [data-testid="stMainBlockContainer"], .block-container {padding-top: 3rem !important;}
+    .hero {margin-top: 10px; margin-bottom: 25px;}
+    .kpi {min-height: 142px; padding: 19px;}
+    .section-space {height: 15px;}
+}
