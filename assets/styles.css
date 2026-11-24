@@ -162,9 +162,9 @@ section[data-testid="stSidebar"] a[data-testid="stPageLink-NavLink"] {
     display: flex !important;
     align-items: center !important;
 
-    height: 45px !important;
-    min-height: 42px !important;
-    max-height: 42px !important;
+    height: 35px !important;
+    min-height: 35px !important;
+    max-height: 35px !important;
 
     padding: 0 15px !important;
     margin: 0 !important;
