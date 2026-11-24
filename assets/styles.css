@@ -94,7 +94,6 @@ h1, h2, h3 {
 .stTabs [data-baseweb="tab"] { border-radius: 12px; padding: 9px 16px; }
 .stTabs [aria-selected="true"] { background: #e5f3ed; color: #0F6B6D !important; }
 
-/* Sidebar */
 section[data-testid="stSidebar"] {
     background: linear-gradient(160deg, #0A5557 0%, #0F6B6D 65%, #186F70 100%);
 }
@@ -112,12 +111,29 @@ section[data-testid="stSidebar"] [data-testid="stSidebarUserContent"] {
 }
 
 section[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
-    gap: .45rem !important;
+    gap: .5rem !important;
 }
 
 .st-key-sidebar_primary [data-testid="stVerticalBlock"] {
     min-height: 0 !important;
+    height: auto !important;
     gap: .5rem !important;
+}
+
+.st-key-sidebar_primary [data-testid="stElementContainer"]:has([data-testid="stPageLink"]) {
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 0 12px !important;
+    padding: 0 !important;
+}
+
+.st-key-sidebar_primary [data-testid="stPageLink"] {
+    box-sizing: border-box !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
 }
 
 section[data-testid="stSidebar"] .sidebar-brand {
@@ -161,15 +177,14 @@ section[data-testid="stSidebar"] a[data-testid="stPageLink-NavLink"] {
     box-sizing: border-box !important;
     display: flex !important;
     align-items: center !important;
-
-    height: 35px !important;
-    min-height: 35px !important;
-    max-height: 35px !important;
-
-    padding: 0 15px !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 42px !important;
+    max-height: none !important;
     margin: 0 !important;
-
-    border-radius: 9px !important;
+    padding: 8px 11px !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
     font-size: .82rem;
     line-height: 1.3;
     text-decoration: none;
@@ -178,10 +193,11 @@ section[data-testid="stSidebar"] a[data-testid="stPageLink-NavLink"] {
 
 section[data-testid="stSidebar"] [data-testid="stPageLink"] a:hover,
 section[data-testid="stSidebar"] [data-testid="stPageLink"] a[aria-current="page"],
-section[data-testid="stSidebar"] a[data-testid="stPageLink-NavLink"]:hover,
-section[data-testid="stSidebar"] a[data-testid="stPageLink-NavLink"][aria-current="page"] {
-    background: rgba(255, 255, 255, .19) !important;
+section[data-testid="stSidebar"] [data-testid="stSidebarNavLink"]:hover,
+section[data-testid="stSidebar"] [aria-current="page"] {
+    background: rgba(255,255,255,.19) !important;
     border-radius: 12px !important;
+    box-shadow: none !important;
 }
 
 section[data-testid="stSidebar"] [data-testid="stElementContainer"]:has(.emergency-link) {
