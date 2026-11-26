@@ -30,20 +30,3 @@ streamlit run app.py
 **Desain:** Teal & Peach, *soft 2.5D shadow*. Red darurat **`#D62828`**.
 
 **Batasan:** jumlah tenaga kesehatan tahunan memakai Semester II; tempat tidur 2020–2021 tidak dianalisis; data puskesmas 2023 direkonsiliasi. Nilai AQI adalah estimasi model Open-Meteo, **bukan** ISPU Indonesia maupun pembacaan sensor lokal. Dashboard ini **bukan situs resmi pemerintah**.
-
-## Pembaruan v0.3
-
-- Identitas aplikasi dipindahkan ke atas menu sidebar (navigasi kustom).
-- Hero mendapat ruang atas; kartu dan konten analisis dibuat lebih renggang.
-- Filter **rentang tahun (awal–akhir)** diterapkan pada halaman analisis, dengan KPI merujuk tahun akhir.
-- Penjelasan HHI dan Gini diperbaiki agar Markdown tidak tampil sebagai blok kode.
-- Peta dasar beralih dari CartoDB Positron ke OpenStreetMap karena tile sebelumnya menampilkan permintaan API key.
-
-**Status pengujian:** validasi CSV, sintaks, dan eksekusi dengan simulasi widget dilakukan. Tampilan Streamlit dan tile peta pada browser pengguna tetap perlu diverifikasi setelah commit dan redeploy.
-
-## Pembaruan v0.4
-
-- Sidebar dibuat ringkas: judul, lima menu, dan tombol **112 merah** berada dalam area primer sebelum bagian informasi data yang dapat digulir. Pada layar yang pendek, scroll mungkin tetap diperlukan.
-- `data/direktori/fasilitas.csv` berisi 12 entri alamat dan listing Google Maps, serta ejaan kecamatan yang konsisten dengan data historis.
-- Daftar fasilitas dan tombol **Google Maps / Petunjuk arah** tersedia walaupun koordinat pin belum diisi.
-- Peta dasarnya tetap OpenStreetMap; marker hanya tampil untuk koordinat yang sudah diverifikasi terhadap pin Google Maps.
